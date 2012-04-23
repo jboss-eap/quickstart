@@ -19,7 +19,7 @@ public class HelloWorldJMSClient {
     // Set up all the default values
     private static final String DEFAULT_MESSAGE = "Hello, World!";
     private static final String DEFAULT_CONNECTION_FACTORY = "jms/RemoteConnectionFactory";
-    private static final String DEFAULT_DESTINATION = "jms/queue/test";
+    private static final String DEFAULT_DESTINATION = "jms/queue/HELLOWORLDJMSQueue";
     private static final String DEFAULT_MESSAGE_COUNT = "1";
     private static final String DEFAULT_USERNAME = "quickstartUser";
     private static final String DEFAULT_PASSWORD = "quickstartPassword";
@@ -50,7 +50,7 @@ public class HelloWorldJMSClient {
             String connectionFactoryString = System.getProperty("connection.factory", DEFAULT_CONNECTION_FACTORY);
             log.info("Attempting to acquire connection factory \"" + connectionFactoryString + "\"");
             connectionFactory = (ConnectionFactory) context.lookup(connectionFactoryString);
-            log.info("Found connection factory \"" + connectionFactoryString + "\" in JNDI");            
+            log.info("Found connection factory \"" + connectionFactoryString + "\" in JNDI");
 
             String destinationString = System.getProperty("destination", DEFAULT_DESTINATION);
             log.info("Attempting to acquire destination \"" + destinationString + "\"");
@@ -80,6 +80,9 @@ public class HelloWorldJMSClient {
                 message = (TextMessage) consumer.receive(5000);
                 log.info("Received message with content " + message.getText());
             }
+        } catch (Exception e) {
+            log.severe(e.getMessage());
+            throw e;
         } finally {
             if (context != null) {
                 context.close();

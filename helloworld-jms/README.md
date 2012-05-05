@@ -52,6 +52,13 @@ However, if you are using the JBoss Enterprise Application Platform 6 distributi
                         <entry name="queue/test"/>
                         <entry name="java:jboss/exported/jms/queue/test"/>
                     </jms-queue>
+<<<<<<< HEAD
+=======
+                    <jms-topic name="testTopic">
+                        <entry name="topic/test"/>
+                        <entry name="java:jboss/exported/jms/topic/test"/>
+                    </jms-topic>
+>>>>>>> 7.1.1.CR2
                 </jms-destinations>
     * Save the changes and close the file.  
 
@@ -107,6 +114,10 @@ If the maven command is successful, with the default configuration you will see 
     Mar 14, 2012 1:38:58 PM org.jboss.as.quickstarts.jms.HelloWorldJMSClient main
     INFO: Received message with content Hello, World!
 
+_Note_: After the above INFO message, you may see the following error. You can ignore the error as it is a well known error message and does not indicate the maven command was unsuccessful in any way. 
+
+    Mar 14, 2012 1:38:58 PM org.jboss.naming.remote.protocol.v1.RemoteNamingStoreV1$MessageReceiver handleEnd
+    ERROR: Channel end notification received, closing channel Channel ID cd114175 (outbound) of Remoting connection 00392fe8 to localhost/127.0.0.1:4447
 
 
 Optional Properties

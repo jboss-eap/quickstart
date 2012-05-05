@@ -74,13 +74,14 @@
         <dependency>
             <groupId>org.jboss.jbossts</groupId>
             <artifactId>jbossxts-api</artifactId>
-            <version>4.16.2.Final-redhat-1</version>
+            <!-- <version>4.16.2.Final-redhat-1</version> -->
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.jboss.logging</groupId>
                     <artifactId>jboss-logging-spi</artifactId>
                 </exclusion>
+                <!--
                 <exclusion>
                     <groupId>emma</groupId>
                     <artifactId>emma</artifactId>
@@ -101,6 +102,7 @@
                     <groupId>org.jboss.jbossas</groupId>
                     <artifactId>jboss-server-manager</artifactId>
                 </exclusion>
+                -->
             </exclusions>
         </dependency> 
  

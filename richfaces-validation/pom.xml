@@ -61,7 +61,7 @@
             <dependency>
                 <groupId>org.richfaces</groupId>
                 <artifactId>richfaces-bom</artifactId>
-                <version>4.2.2.Final-redhat-1</version>
+                <version>4.2.3.Final-redhat-1</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>

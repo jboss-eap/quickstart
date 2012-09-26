@@ -34,7 +34,7 @@ release()
 {
    echo "Regenerating html from markdown"
    $DIR/release-utils.sh -m
-   echo "Releasing JBoss AS Quickstarts version $RELEASEVERSION"
+   echo "Releasing JBoss WFK Quickstarts version $RELEASEVERSION"
    $DIR/release-utils.sh -u -o $SNAPSHOTVERSION -n $RELEASEVERSION
    git commit -a -m "Prepare for $RELEASEVERSION release"
    git tag -a $RELEASEVERSION -m "Tag $RELEASEVERSION"

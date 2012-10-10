@@ -37,7 +37,7 @@
 
         <!-- JBoss dependency versions -->
         <version.org.jboss.as.plugins.maven.plugin>7.2.Final</version.org.jboss.as.plugins.maven.plugin>
-        <version.org.jboss.bom>1.0.0.M12-redhat-1</version.org.jboss.bom>
+        <version.com.redhat.jboss.wfk.boms>1.0.1.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
 
         <!-- other plugin versions -->
         <version.compiler.plugin>2.3.1</version.compiler.plugin>
@@ -60,9 +60,9 @@
             version of JUnit and TestNG recommended for use with Arquillian.
             see https://github.com/jboss/jboss-bom/tree/master/jboss-javaee-6.0-with-tools -->
             <dependency>
-               <groupId>org.jboss.bom</groupId>
+               <groupId>com.redhat.jboss.wfk.boms</groupId>
                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
-               <version>${version.org.jboss.bom}</version>
+               <version>${version.com.redhat.jboss.wfk.boms}</version>
                <type>pom</type>
                <scope>import</scope>
             </dependency>

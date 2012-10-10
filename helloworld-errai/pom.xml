@@ -37,7 +37,7 @@
 
       <!-- JBoss dependency versions -->
       <version.org.jboss.as.plugins.maven.plugin>7.2.Final</version.org.jboss.as.plugins.maven.plugin>
-      <version.org.jboss.bom>1.0.0.M12-redhat-2</version.org.jboss.bom>
+      <version.com.redhat.jboss.wfk.boms>1.0.1.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
 
       <!-- other plugin versions -->
       <version.clean.plugin>2.4.1</version.clean.plugin>
@@ -53,9 +53,9 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.jboss.bom</groupId>
+        <groupId>com.redhat.jboss.wfk.boms</groupId>
         <artifactId>jboss-javaee-6.0-with-errai</artifactId>
-        <version>${version.org.jboss.bom}</version>
+        <version>${version.com.redhat.jboss.wfk.boms}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>

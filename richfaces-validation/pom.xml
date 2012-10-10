@@ -41,7 +41,7 @@
 
         <!-- JBoss dependency versions -->
         <version.org.jboss.as.plugins.maven.plugin>7.2.Final</version.org.jboss.as.plugins.maven.plugin>
-        <version.org.jboss.bom>1.0.0.M12-redhat-1</version.org.jboss.bom>
+        <version.com.redhat.jboss.wfk.boms>1.0.1.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
 
         <version.org.hibernate-jpamodelgen>1.1.1.Final</version.org.hibernate-jpamodelgen>
         <version.org.hibernate.validator>4.2.0.Final</version.org.hibernate.validator>
@@ -67,9 +67,9 @@
                 the JBoss stack of the Java EE 6 APIs, with some extras tools for your project, such
                 as Arquillian for testing) -->
             <dependency>
-                <groupId>org.jboss.bom</groupId>
+                <groupId>com.redhat.jboss.wfk.boms</groupId>
                 <artifactId>jboss-javaee-6.0-with-tools</artifactId>
-                <version>${version.org.jboss.bom}</version>
+                <version>${version.com.redhat.jboss.wfk.boms}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

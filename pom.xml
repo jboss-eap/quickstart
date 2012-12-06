@@ -113,7 +113,6 @@
                 </property>
             </activation>
             <modules>
-                <module>jax-rs-client</module>
                 <module>jts</module>
             </modules>
         </profile>

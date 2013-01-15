@@ -10,7 +10,7 @@
     OF ANY KIND, either express or implied. See the License for the specific 
     language governing permissions and limitations under the License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss.as.quickstarts</groupId>
@@ -40,8 +40,8 @@
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
 
         <!-- JBoss dependency versions -->
-        <version.org.jboss.as.plugins.maven.plugin>7.2.Final</version.org.jboss.as.plugins.maven.plugin>
-        <version.com.redhat.jboss.wfk.boms>1.0.1.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
+        <version.org.jboss.as.plugins.maven.plugin>7.3.Final</version.org.jboss.as.plugins.maven.plugin>
+        <version.com.redhat.jboss.wfk.boms>1.0.4.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
 
         <version.org.hibernate-jpamodelgen>1.1.1.Final</version.org.hibernate-jpamodelgen>
         <version.org.hibernate.validator>4.2.0.Final-redhat-1</version.org.hibernate.validator>
@@ -91,16 +91,14 @@
         <!-- First declare the APIs we depend on and need for compilation.
             All of them are provided by JBoss AS 7 -->
 
-        <!-- Import the CDI API, we use provided scope as the API is included
-            in JBoss AS 7 -->
+        <!-- Import the CDI API, we use provided scope as the API is included in JBoss AS 7 -->
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!-- Import the JPA API, we use provided scope as the API is included
-            in JBoss AS 7 -->
+        <!-- Import the JPA API, we use provided scope as the API is included in JBoss AS 7 -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
@@ -123,8 +121,7 @@
             </exclusions>
         </dependency>
         
-        <!-- Import the JSF API, we use provided scope as the API is included 
-         in JBoss AS 7 -->
+        <!-- Import the JSF API, we use provided scope as the API is included in JBoss AS 7 -->
         <dependency>
             <groupId>org.jboss.spec.javax.faces</groupId>
             <artifactId>jboss-jsf-api_2.1_spec</artifactId>

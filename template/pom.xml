@@ -36,7 +36,7 @@
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
        <!-- JBoss dependency versions -->
-       <version.org.jboss.as.plugins.maven.plugin>7.2.Final</version.org.jboss.as.plugins.maven.plugin>
+       <version.org.jboss.as.plugins.maven.plugin>7.3.Final</version.org.jboss.as.plugins.maven.plugin>
        <version.org.jboss.spec.jboss.javaee.6.0>3.0.0.Final</version.org.jboss.spec.jboss.javaee.6.0>
 
        <!-- other plugin versions -->
@@ -60,100 +60,94 @@
             read this as the JBoss stack of the Java EE 6 APIs). You can actually
             use this stack with any version of JBoss AS that implements Java EE 6, not
             just JBoss AS 7! -->
-         <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-6.0</artifactId>
-            <version>${version.org.jboss.spec.jboss.javaee.6.0}</version>
-            <type>pom</type>
-            <scope>import</scope>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
+            <dependency>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-6.0</artifactId>
+                <version>${version.org.jboss.spec.jboss.javaee.6.0}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-   <dependencies>
+    <dependencies>
 
-      <!-- Import the CDI API, we use provided scope as the API is included 
-         in JBoss AS 7 -->
-      <dependency>
-         <groupId>javax.enterprise</groupId>
-         <artifactId>cdi-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
+        <!-- Import the CDI API, we use provided scope as the API is included  in JBoss AS 7 -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-      <!-- Import the Common Annotations API (JSR-250), we use provided scope 
-         as the API is included in JBoss AS 7 -->
-      <dependency>
-         <groupId>org.jboss.spec.javax.annotation</groupId>
-         <artifactId>jboss-annotations-api_1.1_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope 
+        as the API is included in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-      <!-- Import the JSF API, we use provided scope as the API is included 
-         in JBoss AS 7 -->
-      <dependency>
-         <groupId>org.jboss.spec.javax.faces</groupId>
-         <artifactId>jboss-jsf-api_2.1_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
+        <!-- Import the JSF API, we use provided scope as the API is included in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-      <!-- Import the JPA API, we use provided scope as the API is included 
-         in JBoss AS 7 -->
-      <dependency>
-         <groupId>org.hibernate.javax.persistence</groupId>
-         <artifactId>hibernate-jpa-2.0-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
+        <!-- Import the JPA API, we use provided scope as the API is included in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-      <!-- Import the JPA API, we use provided scope as the API is included 
-         in JBoss AS 7 -->
-      <dependency>
-         <groupId>org.jboss.spec.javax.transaction</groupId>
-         <artifactId>jboss-transaction-api_1.1_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
+        <!-- Import the JPA API, we use provided scope as the API is included in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-      <!-- Import the EJB API, we use provided scope as the API is included 
-         in JBoss AS 7 -->
-      <dependency>
-         <groupId>org.jboss.spec.javax.ejb</groupId>
-         <artifactId>jboss-ejb-api_3.1_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
+        <!-- Import the EJB API, we use provided scope as the API is included in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-   </dependencies>
+    </dependencies>
 
-   <build>
-      <!-- Set the name of the war, used as the context root when the app 
-         is deployed -->
-      <finalName>${project.artifactId}</finalName>
-      <plugins>
-         <plugin>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>${version.war.plugin}</version>
-            <configuration>
-               <!-- Java EE 6 doesn't require web.xml, Maven needs to catch 
-                  up! -->
-               <failOnMissingWebXml>false</failOnMissingWebXml>
-            </configuration>
-         </plugin>
-         <!-- JBoss AS plugin to deploy war -->
-         <plugin>
-            <groupId>org.jboss.as.plugins</groupId>
-            <artifactId>jboss-as-maven-plugin</artifactId>
-            <version>${version.org.jboss.as.plugins.maven.plugin}</version>
-         </plugin>
-         <!-- Compiler plugin enforces Java 1.6 compatibility and activates 
+    <build>
+        <!-- Set the name of the war, used as the context root when the app 
+        is deployed -->
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${version.war.plugin}</version>
+                <configuration>
+                    <!-- Java EE 6 doesn't require web.xml, Maven needs to catch up! -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <!-- JBoss AS plugin to deploy war -->
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>${version.org.jboss.as.plugins.maven.plugin}</version>
+            </plugin>
+            <!-- Compiler plugin enforces Java 1.6 compatibility and activates 
             annotation processors -->
-         <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-             <version>${version.compiler.plugin}</version>
-             <configuration>
-                 <source>${maven.compiler.source}</source>
-                 <target>${maven.compiler.target}</target>
-            </configuration>
-         </plugin>
-      </plugins>
-   </build>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.compiler.plugin}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
 

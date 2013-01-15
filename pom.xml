@@ -10,7 +10,7 @@
     OF ANY KIND, either express or implied. See the License for the specific 
     language governing permissions and limitations under the License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jboss</groupId>
@@ -35,7 +35,7 @@
     </licenses>
 
     <properties>
-        <version.org.jboss.as.plugins.maven.plugin>7.2.Final</version.org.jboss.as.plugins.maven.plugin>
+        <version.org.jboss.as.plugins.maven.plugin>7.3.Final</version.org.jboss.as.plugins.maven.plugin>
     </properties>
 
     <profiles>
@@ -65,10 +65,8 @@
 
     <build>
         <plugins>
-            <!-- The JBoss AS plugin deploys your apps to a local JBoss AS
-                container -->
-            <!-- Disabling it here means that we don't try to deploy this
-                POM! -->
+            <!-- The JBoss AS plugin deploys your apps to a local JBoss AS container -->
+            <!-- Disabling it here means that we don't try to deploy this POM! -->
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>

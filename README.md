@@ -1,11 +1,10 @@
 JBoss WFK Quickstarts
 ====================
-
+Summary: The quickstarts demonstrate Java EE 6 and a few additional technologies from the JBoss stack. They provide small, specific, working examples that can be used as a reference for your own project.
 
 Introduction
 ---------------------
 
-The quickstarts included in this distribution were written to demonstrate Java EE 6 and a few additional technologies. They provide small, specific, working examples that can be used as a reference for your own project.
 
 These quickstarts run on both JBoss Enterprise Application Platform 6 and JBoss AS 7. If you want to run the quickstarts on JBoss Enterprise Application Platform 6, we recommend using the JBoss Enterprise Application Platform 6 ZIP file. This version uses the correct dependencies and ensures you test and compile against your runtime environment. 
 
@@ -112,11 +111,23 @@ If you are using the JBoss Enterprise Application Platform 6 distribution, you n
 
 If you are using the JBoss AS 7 Quickstart distribution, the community artifacts are available in the Maven central repository so no additional configuration is needed.
 
+### Maven Profiles
+
+Profiles are used by Maven to customize the build environment. The `pom.xml` in the root of the quickstart directory defines the following profiles:
+
+* The `default` profile defines the list of modules or quickstarts that require nothing but JBoss Enterprise Application Platform or JBoss AS .
+* The `requires-postgres` profile lists the quickstarts that require PostgreSQL to be running when the quickstart is deployed.
+* The `complex-dependency` profile lists quickstarts that require manual configuration that can not be automated.
+* The `requires-full` profile lists quickstarts the require you start the server using the full profile.
+* The `requires-xts` profile lists quickstarts the require you start the server using the xts profile.
+* The `non-maven` profile lists quickstarts that do not require Maven, for example, quickstarts that depend on deployment of other quickstarts or those that use other Frameworks such as Forge.
+
+
 <a id="runningquickstarts"></a>
 Run the Quickstarts 
 -------------------
 
-The root folder of each quickstart contains a README file with specific details on how to build and run the example. In most cases you do the following:
+The root folder of each individual quickstart contains a README file with specific details on how to build and run the example. In most cases you do the following:
 
 * [Start the JBoss server](#startjboss)
 * [Build and deploy the quickstart](#buildanddeploy)
@@ -207,6 +218,56 @@ The command to undeploy the quickstart is simply:
 
         mvn jboss-as:undeploy
  
+<a id="verifyall"></a>
+### Verify the Quickstarts Build and Deploy with One Command
+-------------------------
+
+You can verify the quickstarts build and deploy using one command. However, quickstarts that have complex dependencies must be skipped. For example, the _jax-rs-client_ quickstart is a RESTEasy client that depends on the deployment of the _helloworld-rs_ quickstart. As noted above, the root `pom.xml` file defines a `complex-dependencies` profile to exclude these quickstarts from the root build process. 
+
+To build and test the quickstarts:
+
+1. Do not start the server.
+2. Open a command line and navigate to the root directory of the quickstarts.
+3. Use this command to build, deploy, and undeploy the quickstarts that do not have complex dependencies:
+
+        For JBoss AS 7 or JBoss Enterprise Application Platform 6 (Maven user settings configured): 
+
+            mvn clean install -Pdefault,!complex-dependencies
+
+        For JBoss Enterprise Application Platform 6 (Maven user settings NOT configured): 
+
+            mvn clean install -Pdefault,!complex-dependencies -s PATH_TO_QUICKSTARTS/example-settings.xml
+
+This command iterates through the quickstarts, excluding those with complex dependencies, and does the following:
+
+* Builds the quickstart
+* Starts the server
+* Deploys the quickstart
+* Undeploys the quickstart
+* Stops the server
+
+<a id="undeployall"></a>
+### Undeploy the Deployed Quickstarts with One Command
+-------------------------
+
+To undeploy the quickstarts from the root of the quickstart folder, you must pass the argument `-fae` (fail at end) on the command line. This allows the command to continue past quickstarts that fail due to complex dependencies and quickstarts that only have Arquillian tests and do not deploy archives to the server.
+
+You can undeploy quickstarts using the following procedure:
+
+1. Start the server.
+2. Open a command line and navigate to the root directory of the quickstarts.
+3. Use this command to undeploy any deployed quickstarts:
+
+        For JBoss AS 7 or JBoss Enterprise Application Platform 6 (Maven user settings configured): 
+
+            mvn jboss-as:undeploy -fae
+
+        For JBoss Enterprise Application Platform 6 (Maven user settings NOT configured): 
+
+            mvn jboss-as:undeploy -fae -s PATH_TO_QUICKSTARTS/example-settings.xml
+
+To undeploy any quickstarts that fail due to complex dependencies, follow the undeploy procedure described in the quickstart's README file.
+
 
 <a id="arquilliantests"></a>
 ### Run the Arquillian Tests 
@@ -258,4 +319,3 @@ You can run these tests using either a remote or managed container. The quicksta
 Use JBoss Developer Studio or Eclipse to Run the Quickstarts
 -------------------------------------
 You can also deploy the quickstarts from Eclipse using JBoss tools. For more information on how to set up Maven and the JBoss tools, refer to the [JBoss Enterprise Application Platform 6 Development Guide](https://access.redhat.com/knowledge/docs/JBoss_Enterprise_Application_Platform/) or [Get Started Developing Applications](http://www.jboss.org/jdf/quickstarts/jboss-as-quickstart/guide/Introduction/ "Get Started Developing Applications").
-

@@ -50,7 +50,7 @@ under the License.
    | The path to the local repository maven will use to store artifacts.
    |
    | Default: ~/.m2/repository
-  <localRepository>/path/to/local/repo</localRepository>
+  <localRepository>/path/to/maven/repository</localRepository>
   -->
 
   <!-- mirrors
@@ -72,15 +72,6 @@ under the License.
      |
      -->
     
-    <mirror>
-      <id>eap6-mirror-setting</id>
-      <mirrorOf>
-         *,!central-eap6,!central-eap6-plugins
-      </mirrorOf>
-      <name>Mirror Settings for EAP 6 build</name>
-      <!-- Note this URL can be changed to point to an extracted EAP Maven repo zip -->
-      <url>${eapMavenRepoUrl}</url>
-    </mirror>
   </mirrors>
   
   <!-- profiles
@@ -118,68 +109,22 @@ under the License.
     -->
 
     <profile>
-      <id>eap6-repository-settings</id>
-      <activation>
-        <property>
-          <name>!eap6-repository-settings</name>
-        </property>
-      </activation>
+      <id>jboss-eap-repository</id>
       <repositories>
         <repository>
-          <id>mead-eap6</id>
-          <name>MEAD EAP6 Maven Repository</name>
-          <url>replaced by mirror settings</url>
+          <id>jboss-eap-repository</id>
+          <name>JBoss EAP6 Maven Repository</name>
+          <url>${eapMavenRepoUrl}</url>
           <releases>
             <enabled>true</enabled>
             <updatePolicy>never</updatePolicy>
           </releases>
           <snapshots>
             <enabled>false</enabled>
-          </snapshots>
-        </repository>
-        <repository>
-          <id>central-eap6</id>
-          <name>Use unique IDs for downloading artifacts vs. plugins from central</name>
-          <url>http://repo1.maven.org/maven2</url>
-          <releases>
-            <enabled>true</enabled>
             <updatePolicy>never</updatePolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
           </snapshots>
         </repository>
       </repositories>
-
-      <!-- Note: plugin repositories must have non-matching IDs to normal repositories.
-         - This allows plugin repos to be mirrored separately.
-        -->
-      <pluginRepositories>
-        <pluginRepository>
-          <id>mead-eap6-plugins</id>
-          <name>MEAD EAP6 Maven Plugin Repository</name>
-          <url>replaced by mirror settings</url>
-          <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-          <id>central-eap6-plugins</id>
-          <name>Use unique IDs for downloading artifacts vs. plugins from central</name>
-          <url>http://repo1.maven.org/maven2</url>
-          <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </pluginRepository>
-      </pluginRepositories>      
     </profile>
     <profile>
       <id>jboss-wfk-repository</id>
@@ -187,7 +132,7 @@ under the License.
          <repository>
            <id>jboss-wfk-repository</id>
            <name>JBoss WFK Maven Repository</name>
-           <url>file:///path/to/repo/jboss-wfk-2.1.0-maven-repository</url>
+           <url>${wfkMavenRepoUrl}</url>
            <layout>default</layout>
            <releases>
              <enabled>true</enabled>
@@ -203,7 +148,7 @@ under the License.
          <pluginRepository>
            <id>jboss-wfk-repository</id>
            <name>JBoss WFK Maven Repository</name>
-           <url>file:///path/to/repo/jboss-wfk-2.1.0-maven-repository</url>
+           <url>${wfkMavenRepoUrl}</url>
            <layout>default</layout>
            <releases>
              <enabled>true</enabled>
@@ -223,6 +168,7 @@ under the License.
    |-->
   <activeProfiles>
     <activeProfile>jboss-wfk-repository</activeProfile>
+    <activeProfile>jboss-eap-repository</activeProfile>
   </activeProfiles>
 </settings>
 

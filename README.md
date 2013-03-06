@@ -83,10 +83,10 @@ Maven configuration is dependent on whether you are running JBoss Enterprise App
 
 If you are using the JBoss Enterprise Application Platform 6 distribution, you need to download and configure the Maven repository.
 
-1. Download the JBoss Enterprise Application Platform 6 Maven repository distribution ZIP and Web Framework Kit Maven repository zip, unzip every Maven repository zip file into a directory of your choice.
+1. Download the JBoss Enterprise Application Platform 6 Maven repository distribution ZIP and Web Framework Kit Maven repository zip, unzip them into a directory of your choice.
 
 2. Modify the `settings-wfk-example.xml` file located in the root of your quickstarts folder. 
-    * Replace all instances of ${eapMavenRepoUrl} with the fully qualified path to the Maven repository you unzipped in the previous step.
+    * Replace all instances of ${eapMavenRepoUrl} and ${wfkMavenRepoUrl} with the fully qualified path to the EAP and WFK Maven repository you unzipped in the previous step.
     * Be sure to use 3 forward slashes after `file:`: 2 for the protocol and 1 for the fully qualified path. For example:
 
             file:///home/username/Quickstarts/jboss-eap-6.0-quickstarts

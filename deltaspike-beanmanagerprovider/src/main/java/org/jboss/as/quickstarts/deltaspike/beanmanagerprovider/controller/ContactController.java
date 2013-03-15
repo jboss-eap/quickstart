@@ -23,8 +23,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Model;
-import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -63,6 +63,8 @@ public class ContactController implements Serializable {
 
     private Contact contact;
 
+    private List<Contact> allContacts;
+
     // return the managed entity instance
     public Contact getContact() {
         return contact;
@@ -70,13 +72,15 @@ public class ContactController implements Serializable {
 
     public void save() {
         // Define the faces message based on the entity state
-        String msg = contact.getId() == null ? "New Contact added" : "Contact updated";
+        String msg = isContactManaged() ? "Contact updated" : "New Contact added";
         try {
             contactRepository.persist(contact);
         } catch (Exception e) {
             // discard the conversation (and the entity manager) on any exception
             conversation.end();
-            msg = e.getMessage();
+            // reset the entity Id
+            contact.setId(null);
+            msg = "Can't create contact: " + e.getMessage();
         }
         // add the message to be showed on the jsf page
         facesContext.addMessage(null, new FacesMessage(msg));
@@ -93,9 +97,9 @@ public class ContactController implements Serializable {
         this.contact = contact;
     }
 
-    /**
+    /*
      * This method will promote the conversation when this component is constructed through the {@link PostConstruct} annotation
-     * This will also create a new entity to be managed/edited
+     * This will also create a new entity to be managed/edited and get the list of all contacts previously persisted.
      */
     @PostConstruct
     public void newContact() {
@@ -103,40 +107,33 @@ public class ContactController implements Serializable {
             conversation.begin();
         }
         contact = new Contact();
+        allContacts = contactRepository.getAllContacts();
     }
 
-    /**
-     * Produces the conversation number to be used on the page footer
-     * 
-     * @return
+    /*
+     * Updates the Contact list when a event on Contact was fired. The Events are produced by {@link ContactRepository}
      */
-    @Produces
-    @Named
+    public void readAllContacts(@Observes Contact contact) {
+        allContacts = contactRepository.getAllContacts();
+    }
+
+    // Return the conversation number to be used on the page footer
     public String getConversationNumber() {
-        return "Conversation Id: " + conversation.getId();
+        return "Conversation Id: " + (conversation.getId() == null ? "conversation transient" : conversation.getId());
     }
 
-    /**
-     * Produces the information to be used on *All Contacts* table.
-     * 
-     * 
-     * @return
-     */
-    @Produces
-    @Named
+    // Return the information to be used on *All Contacts* table.
     public List<Contact> getAllContacts() {
-        return contactRepository.getAllContacts();
+        return allContacts;
     }
 
-    /**
-     * Produces the information to be used on *Audit Records* table
-     * 
-     * @return
-     */
-    @Produces
-    @Named
+    // Return the information to be used on *Audit Records* table
     public List<AuditContact> getAuditRecords() {
         return auditRepository.getAllAuditRecords();
+    }
+
+    public boolean isContactManaged() {
+        return contact.getId() != null;
     }
 
 }

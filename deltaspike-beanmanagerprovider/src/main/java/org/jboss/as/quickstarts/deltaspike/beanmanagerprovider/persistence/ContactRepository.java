@@ -14,13 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.jboss.as.quickstarts.deltaspike.beanmanagerprovider.persistence;
 
 import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -42,6 +43,9 @@ public class ContactRepository {
     @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
+    @Inject
+    private Event<Contact> contactEvent;
+
     /**
      * Persit the {@link Contact}
      * 
@@ -50,6 +54,7 @@ public class ContactRepository {
     public void persist(Contact contact) {
         entityManager.persist(contact);
         entityManager.flush();
+        contactEvent.fire(contact);
     }
 
     /**
@@ -60,6 +65,7 @@ public class ContactRepository {
     public void remove(Contact contact) {
         entityManager.remove(contact);
         entityManager.flush();
+        contactEvent.fire(contact);
     }
 
     /**
